@@ -4,6 +4,7 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const dotenv = require("dotenv");
+const cors = require("cors");
 
 dotenv.config();
 
@@ -20,6 +21,12 @@ const Redis = require("redis");
 const storeRouter = require("./src/routes/store.routes");
 
 const app = express();
+app.use(
+  cors({
+    origin: "*", // your frontend URL
+    credentials: true,
+  })
+);
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
